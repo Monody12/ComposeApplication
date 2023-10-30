@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/ed_url"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="https://vps.dluserver.cn/pasteboard/index.jsp" />
+
+    <Button
+        android:id="@+id/btn_load"
+        android:layout_below="@id/ed_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="加载网页内容"
+        android:onClick="loadUrl"/>
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_below="@id/btn_load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="网页内容"/>
+
+
+
+</RelativeLayout>

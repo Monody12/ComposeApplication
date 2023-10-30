@@ -9,7 +9,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import com.example.composeapplication.databinding.MainActivityBinding
 
-class MainActivity : Activity(),OnClickListener {
+class MainActivity : Activity() {
 
     private lateinit var mainActivityBinding: MainActivityBinding
 
@@ -28,7 +28,15 @@ class MainActivity : Activity(),OnClickListener {
         mainActivityBinding = MainActivityBinding.inflate(layoutInflater)
         setContentView(mainActivityBinding.root)
         // 初始化 button1
-        mainActivityBinding.button1.setOnClickListener(this)
+        mainActivityBinding.button1.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
+        // 初始化 button2
+        mainActivityBinding.button2.setOnClickListener {
+            val intent = Intent(this, ThirdActivity::class.java)
+            startActivity(intent)
+        }
         // 获取保存的数据，并显示在textView2上
         if (savedInstanceStace != null) {
             val value = savedInstanceStace.getString("key")
@@ -72,9 +80,5 @@ class MainActivity : Activity(),OnClickListener {
         Log.i("MainActivity", "onDestroy")
     }
 
-    override fun onClick(v: View?) {
-        // 打开Second Activity
-        val intent = Intent(this, SecondActivity::class.java)
-        startActivity(intent)
-    }
+
 }

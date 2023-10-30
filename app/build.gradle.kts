@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -66,8 +67,6 @@ android {
         enable = true
     }
 
-
-
 }
 
 dependencies {
@@ -98,5 +97,10 @@ dependencies {
     var room_version = "2.4.0"
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
+    // hilt
+    implementation("com.google.dagger:hilt-android:2.46.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.46.1")
+    // okhttp
+    implementation("com.squareup.okhttp3:okhttp:4.9.2")
 
 }

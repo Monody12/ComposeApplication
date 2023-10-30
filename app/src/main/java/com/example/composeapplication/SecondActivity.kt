@@ -9,12 +9,19 @@ import com.example.composeapplication.bean.AccountBean
 import com.example.composeapplication.bean.User
 import com.example.composeapplication.database.AccountDatabase
 import com.example.composeapplication.databinding.SecondActivityBinding
+import com.example.composeapplication.manager.UserManager
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SecondActivity : ComponentActivity() {
 
     private lateinit var secondActivityBinding: SecondActivityBinding
 
     private lateinit var db : AccountDatabase
+
+    @Inject
+    lateinit var userManager: UserManager
 
     override fun onCreate(savedInstanceStace: Bundle?) {
         super.onCreate(savedInstanceStace)
@@ -41,6 +48,8 @@ class SecondActivity : ComponentActivity() {
     }
 
     fun register(view:View){
+        // 获取用户token
+        userManager.getToken()
         // 获取用户名和密码
         val username = secondActivityBinding.edUsername.text.toString()
         val password = secondActivityBinding.edPassword.text.toString()

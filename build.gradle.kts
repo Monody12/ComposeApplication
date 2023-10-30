@@ -4,6 +4,9 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.8.10" apply false
 }
 
-buildscript{
-
+buildscript {
+    dependencies{
+        // hilt
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.46.1")
+    }
 }
