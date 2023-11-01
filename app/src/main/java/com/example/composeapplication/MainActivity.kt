@@ -37,6 +37,11 @@ class MainActivity : Activity() {
             val intent = Intent(this, ThirdActivity::class.java)
             startActivity(intent)
         }
+        // 初始化 button3
+        mainActivityBinding.button3.setOnClickListener {
+            val intent = Intent(this, FourthActivity::class.java)
+            startActivity(intent)
+        }
         // 获取保存的数据，并显示在textView2上
         if (savedInstanceStace != null) {
             val value = savedInstanceStace.getString("key")

@@ -35,6 +35,9 @@
 
         <activity android:name=".ThirdActivity"
             android:theme="@style/Theme.ComposeApplication"/>
+
+        <activity android:name=".FourthActivity"
+            android:theme="@style/Theme.AppCompat"/>
     </application>
 
 </manifest>
