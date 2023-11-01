@@ -18,6 +18,7 @@ class NetWorkUtil {
     fun getOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(10,TimeUnit.SECONDS)
+            .readTimeout(30,TimeUnit.SECONDS)
             .build()
     }
 

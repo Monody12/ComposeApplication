@@ -5,9 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.View.OnClickListener
 import com.example.composeapplication.databinding.MainActivityBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : Activity() {
 
@@ -41,6 +41,10 @@ class MainActivity : Activity() {
         if (savedInstanceStace != null) {
             val value = savedInstanceStace.getString("key")
             mainActivityBinding.textView2.text = value
+        }
+        // 协程测试
+        GlobalScope.launch {
+            Log.i("MainActivity", Thread.currentThread().name)
         }
     }
 

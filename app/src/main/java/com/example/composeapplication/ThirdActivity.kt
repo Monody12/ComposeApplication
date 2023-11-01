@@ -30,16 +30,18 @@ class ThirdActivity: ComponentActivity() {
         val request = okhttp3.Request.Builder().url(url.toString()).build()
         okHttpClient.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: java.io.IOException) {
+                val error = e.toString()
                 runOnUiThread {
                     // 在 UI 线程上更新视图
-                    thirdActivityBinding.tvResult.text = e.toString()
+                    thirdActivityBinding.tvResult.text = error
                 }
             }
 
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                val res = response.body?.string() // .string()方法不能放在ui线程中执行
                 runOnUiThread {
                     // 在 UI 线程上更新视图
-                    thirdActivityBinding.tvResult.text = response.body?.string()
+                    thirdActivityBinding.tvResult.text = res
                 }
             }
         })
