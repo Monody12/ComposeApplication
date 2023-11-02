@@ -14,6 +14,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.composeapplication.paging3.FooterAdapter
 import com.example.composeapplication.paging3.Repo
 import com.example.composeapplication.paging3.RepoAdapter
 import com.example.composeapplication.paging3.Repository
@@ -41,6 +42,8 @@ class FourthActivity : AppCompatActivity(){
         val progressBar = findViewById<ProgressBar>(R.id.progress_bar)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = repoAdapter
+        // 将底部刷新与重试的适配器添加到主适配器中
+        recyclerView.adapter = repoAdapter.withLoadStateFooter(FooterAdapter { repoAdapter.retry() })
         lifecycleScope.launch {
             viewModel.getPagingData().collect { pagingData ->
                 repoAdapter.submitData(pagingData)
