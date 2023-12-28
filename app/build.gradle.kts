@@ -88,9 +88,12 @@ dependencies {
     // androidx
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
-      // lifecycle
+    // lifecycle
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version")
+
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
     // fragment
@@ -104,9 +107,9 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.46.1")
     // okhttp
     implementation("com.squareup.okhttp3:okhttp:4.9.2")
-    // coroutines
+    // 协程 coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
-    // squareup
+    // 网络请求 squareup
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")

@@ -1,6 +1,5 @@
-package com.example.composeapplication.util
+package com.example.composeapplication.network
 
-import com.example.composeapplication.BaseApplication
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

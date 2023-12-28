@@ -30,7 +30,7 @@ class SecondActivity : ComponentActivity() {
         setContentView(secondActivityBinding.root)
         val user = User()
         secondActivityBinding.user = user
-        setTitle("SecondActivity")
+        title = "SecondActivity"
         Log.i("SecondActivity", "onCreate")
         // 初始化数据库
         db = Room.databaseBuilder(
