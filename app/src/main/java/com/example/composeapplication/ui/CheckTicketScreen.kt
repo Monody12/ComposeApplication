@@ -1,5 +1,6 @@
 package com.example.composeapplication.ui
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -37,13 +38,10 @@ fun CheckTicketInfoShow(shiftInfo: ShiftInfo) {
 @Composable
 fun CheckTicketScreen() {
     val viewModel: CheckTicketViewModel = viewModel()
-    val shiftInfo: MutableLiveData<MutableList<ShiftInfo>> = viewModel.shiftInfoLiveData
-    val shiftInfoState = remember {
-        mutableStateOf<List<ShiftInfo>>(emptyList())
-    }
+    val shiftInfoState = viewModel.shiftInfoState
     // 观察 MutableLiveData 的变化，手动更新 State
-    DisposableEffect(viewModel.shiftInfoLiveData.value) {
-        shiftInfoState.value = viewModel.shiftInfoLiveData.value.orEmpty()
+    DisposableEffect(viewModel.shiftInfoState.value) {
+        shiftInfoState.value = viewModel.shiftInfoState.value
         onDispose {
 
         }

@@ -2,12 +2,17 @@ package com.example.composeapplication
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.composeapplication.ui.CheckTicketScreen
+import com.example.composeapplication.viewmodel.CheckTicketViewModel
 
 internal class FifthActivityLifecycleObserver : DefaultLifecycleObserver {
     override fun onCreate(owner: LifecycleOwner) {
@@ -39,6 +44,8 @@ internal class FifthActivityLifecycleObserver : DefaultLifecycleObserver {
 class FifthActivity : AppCompatActivity() {
     private lateinit var lifecycleRegistry: LifecycleRegistry
 
+    private val viewModel : CheckTicketViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // lifecycle
@@ -50,5 +57,8 @@ class FifthActivity : AppCompatActivity() {
         setContent {
             CheckTicketScreen()
         }
+        // Observe LiveData
+//        viewModel.shiftInfoLiveData.observe(this)
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.composeapplication.viewmodel
 
 import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,7 +15,10 @@ import kotlinx.coroutines.withContext
 class CheckTicketViewModel : ViewModel() {
 
     val api by lazy { RetrofitManger.getApiService() }
-    var shiftInfoLiveData : MutableLiveData<MutableList<ShiftInfo>> = MutableLiveData()
+//    val shiftInfoLiveData : MutableLiveData<MutableList<ShiftInfo>> by lazy {
+//        MutableLiveData<MutableList<ShiftInfo>>()
+//    }
+    val shiftInfoState = mutableStateOf<List<ShiftInfo>>(emptyList())
 
     var apiError:MutableLiveData<Throwable> = MutableLiveData()
 
@@ -30,12 +34,10 @@ class CheckTicketViewModel : ViewModel() {
                 val data : MutableList<ShiftInfo> = respose.data!!
                 // 在主线程上更新数据
                 withContext(Dispatchers.Main){
-                    shiftInfoLiveData.postValue(data)
-                    // 查看shiftInfoLiveData中的内容
-                    Log.i("CoroutinesViewModel",shiftInfoLiveData.value.toString())
+                    shiftInfoState.value = data
                 }
             } else {
-                shiftInfoLiveData.postValue(mutableListOf())
+
             }
         }
 
