@@ -1,6 +1,7 @@
 package com.example.composeapplication.ui
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -9,13 +10,17 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.rememberImagePainter
 import com.example.composeapplication.bean.ShiftInfo
 import com.example.composeapplication.viewmodel.CheckTicketViewModel
 
@@ -38,14 +43,21 @@ fun CheckTicketInfoShow(shiftInfo: ShiftInfo) {
 @Composable
 fun CheckTicketScreen() {
     val viewModel: CheckTicketViewModel = viewModel()
-    val shiftInfoState = viewModel.shiftInfoState
-    // 观察 MutableLiveData 的变化，手动更新 State
-    DisposableEffect(viewModel.shiftInfoState.value) {
-        shiftInfoState.value = viewModel.shiftInfoState.value
-        onDispose {
+    val shiftInfoList by viewModel.shiftInfoLiveData.observeAsState()
 
-        }
-    }
+//    val shiftInfoState = viewModel.shiftInfoState
+    // 观察 MutableLiveData 的变化，手动更新 State
+//    DisposableEffect(viewModel.shiftInfoState.value) {
+//        shiftInfoState.value = viewModel.shiftInfoState.value
+//        onDispose {
+//
+//        }
+//    }
+    Image(
+        painter = rememberImagePainter(
+            data = "https://vps.dluserver.cn/file/picture/fnn01.jpeg"
+        ), contentDescription = null
+    )
     Column {
         Text(text = "检票信息")
         Button(
@@ -58,8 +70,10 @@ fun CheckTicketScreen() {
             Text(text = "更新")
         }
         LazyColumn {
-            items(shiftInfoState.value.size) { index ->
-                CheckTicketInfoShow(shiftInfoState.value[index])
+            shiftInfoList?.forEach { shiftInfo ->
+                item {
+                    CheckTicketInfoShow(shiftInfo)
+                }
             }
         }
     }

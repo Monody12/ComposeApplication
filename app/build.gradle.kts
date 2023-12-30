@@ -96,6 +96,7 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+    implementation("androidx.compose.runtime:runtime-livedata")
     // fragment
     implementation("androidx.fragment:fragment-ktx:1.3.6")
     // room
@@ -115,6 +116,8 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
     // paging3
     implementation("androidx.paging:paging-runtime-ktx:3.1.0")
+    // 从网络加载图片 coil-compose
+    implementation("io.coil-kt:coil-compose:1.4.0")
 
 
 }
