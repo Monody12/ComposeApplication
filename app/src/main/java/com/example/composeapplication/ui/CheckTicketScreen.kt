@@ -15,6 +15,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
@@ -45,19 +46,6 @@ fun CheckTicketScreen() {
     val viewModel: CheckTicketViewModel = viewModel()
     val shiftInfoList by viewModel.shiftInfoLiveData.observeAsState()
 
-//    val shiftInfoState = viewModel.shiftInfoState
-    // 观察 MutableLiveData 的变化，手动更新 State
-//    DisposableEffect(viewModel.shiftInfoState.value) {
-//        shiftInfoState.value = viewModel.shiftInfoState.value
-//        onDispose {
-//
-//        }
-//    }
-    Image(
-        painter = rememberImagePainter(
-            data = "https://vps.dluserver.cn/file/picture/fnn01.jpeg"
-        ), contentDescription = null
-    )
     Column {
         Text(text = "检票信息")
         Button(
