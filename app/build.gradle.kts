@@ -118,6 +118,10 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:3.1.0")
     // 从网络加载图片 coil-compose
     implementation("io.coil-kt:coil-compose:1.4.0")
+    // layout 相关
+    // constraintlayout-compose
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
 
 
 }

@@ -36,7 +36,7 @@ internal class MyLocationListener(
 internal class AdvertisingViewModel(application: Application) :
     AndroidViewModel(application) {
     // 计时开始时间
-    var millisInFuture : Long = 2000
+    var millisInFuture : Long = 0
 }
 
 /**

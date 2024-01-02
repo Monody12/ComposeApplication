@@ -5,11 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.compose.ui.platform.ComposeView
 import com.example.composeapplication.databinding.MainActivityBinding
+import com.example.composeapplication.ui.MainScreen
+import com.example.composeapplication.ui.MyScaffoldContent
+import com.example.composeapplication.ui.theme.MyTheme
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MainActivity : Activity() {
+class MainActivity : ComponentActivity() {
 
     private lateinit var mainActivityBinding: MainActivityBinding
 
@@ -20,43 +25,67 @@ class MainActivity : Activity() {
         }
     }
 
-    override fun onCreate(savedInstanceStace: Bundle?) {
-        super.onCreate(savedInstanceStace)
-        Log.i("MainActivity", "onCreate")
-        title = "MainActivity"
-        // 使用 ViewBinding 来获取控件
-        mainActivityBinding = MainActivityBinding.inflate(layoutInflater)
-        setContentView(mainActivityBinding.root)
-        // 初始化 button1
-        mainActivityBinding.button1.setOnClickListener {
-            val intent = Intent(this, SecondActivity::class.java)
-            startActivity(intent)
-        }
-        // 初始化 button2
-        mainActivityBinding.button2.setOnClickListener {
-            val intent = Intent(this, ThirdActivity::class.java)
-            startActivity(intent)
-        }
-        // 初始化 button3
-        mainActivityBinding.button3.setOnClickListener {
-            val intent = Intent(this, FourthActivity::class.java)
-            startActivity(intent)
-        }
-        // 初始化 button4
-        mainActivityBinding.button4.setOnClickListener {
-            val intent = Intent(this, FifthActivity::class.java)
-            startActivity(intent)
-        }
-        // 获取保存的数据，并显示在textView2上
-        if (savedInstanceStace != null) {
-            val value = savedInstanceStace.getString("key")
-            mainActivityBinding.textView2.text = value
-        }
-        // 协程测试
-        GlobalScope.launch {
-            Log.i("MainActivity", Thread.currentThread().name)
-        }
+
+    /**
+     * Activity Compose创建时调用
+     */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置lifeCycleOwner
+        setContentView(
+            ComposeView(this).apply {
+                setContent {
+//                    MyScaffoldContent()
+                    MyTheme{
+                        MainScreen()
+                    }
+
+                }
+            }
+        )
     }
+
+
+    /**
+     * Activity xml创建时调用
+     */
+//    override fun onCreate(savedInstanceStace: Bundle?) {
+//        super.onCreate(savedInstanceStace)
+//        Log.i("MainActivity", "onCreate")
+//        title = "MainActivity"
+//        // 使用 ViewBinding 来获取控件
+//        mainActivityBinding = MainActivityBinding.inflate(layoutInflater)
+//        setContentView(mainActivityBinding.root)
+//        // 初始化 button1
+//        mainActivityBinding.button1.setOnClickListener {
+//            val intent = Intent(this, SecondActivity::class.java)
+//            startActivity(intent)
+//        }
+//        // 初始化 button2
+//        mainActivityBinding.button2.setOnClickListener {
+//            val intent = Intent(this, ThirdActivity::class.java)
+//            startActivity(intent)
+//        }
+//        // 初始化 button3
+//        mainActivityBinding.button3.setOnClickListener {
+//            val intent = Intent(this, FourthActivity::class.java)
+//            startActivity(intent)
+//        }
+//        // 初始化 button4
+//        mainActivityBinding.button4.setOnClickListener {
+//            val intent = Intent(this, FifthActivity::class.java)
+//            startActivity(intent)
+//        }
+//        // 获取保存的数据，并显示在textView2上
+//        if (savedInstanceStace != null) {
+//            val value = savedInstanceStace.getString("key")
+//            mainActivityBinding.textView2.text = value
+//        }
+//        // 协程测试
+//        GlobalScope.launch {
+//            Log.i("MainActivity", Thread.currentThread().name)
+//        }
+//    }
 
     override fun onStart() {
         super.onStart()
